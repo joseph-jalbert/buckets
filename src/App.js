@@ -1,9 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import $ from 'jquery';
 
 class App extends Component {
   constructor(props) {
+
+    // var request = new Request('https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/scoreboard.json?fordate=20170202', {
+    //   method: 'GET',     
+    //   headers: new Headers({
+    //     'Authorization': 'Basic' + btoa('BLAH'),
+    //     // 'Access-Control-Allow-Credentials': true
+    //     // 'Access-Control-Allow-Origin': '*',
+    //   })
+    // });
+
+    // fetch(request).then(function(response) {
+    //     return response.json();
+    // }).then(function(j) {
+    //   console.log(j);
+    // });
+
+    $.ajax({
+        type: "GET",
+        url: 'https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/scoreboard.json?fordate=20170202',
+        dataType: 'json',
+        async: false,
+        headers: {
+          "Authorization": "Basic " + btoa('u:p')
+        },
+        success: function (data){
+          console.log(data.scoreboard.gameScore[0].homeScore);
+      }
+    });
+
+
+
+
+
     super(props);
     this.state = {
       awayTeam: "Knicks",
@@ -54,7 +87,7 @@ class App extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr class="away">
+            <tr className="away">
               <td>
                 <div>{this.state.awayTeam}</div>
               </td>
@@ -63,7 +96,7 @@ class App extends Component {
               <td>{this.state.quarterSummary.quarter[2].awayScore}</td>
               <td>{this.state.quarterSummary.quarter[3].awayScore}</td>
             </tr>
-            <tr class="home">
+            <tr className="home">
               <td>
                 <div>{this.state.homeTeam}</div>
               </td>
