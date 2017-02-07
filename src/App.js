@@ -20,18 +20,18 @@ class App extends Component {
     //   console.log(j);
     // });
 
-    $.ajax({
-        type: "GET",
-        url: 'https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/scoreboard.json?fordate=20170202',
-        dataType: 'json',
-        async: false,
-        headers: {
-          "Authorization": "Basic " + btoa('u:p')
-        },
-        success: function (data){
-          console.log(data.scoreboard.gameScore[0].homeScore);
-      }
-    });
+    // $.ajax({
+    //     type: "GET",
+    //     url: 'https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/scoreboard.json?fordate=20170202',
+    //     dataType: 'json',
+    //     async: false,
+    //     headers: {
+    //       "Authorization": "Basic " + btoa('u:p')
+    //     },
+    //     success: function (data){
+    //       console.log(data.scoreboard.gameScore[0].homeScore);
+    //   }
+    // });
 
 
 
