@@ -1,22 +1,14 @@
 {
   "name": "buckets",
-  "version": "0.1.0",
-  "private": true,
-  "devDependencies": {
-    "react-scripts": "0.8.5"
-  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {},
+  "license": "MIT",
   "dependencies": {
-    "buffer": "^5.0.3",
-    "express": "^4.14.1",
-    "jquery": "^3.1.1",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "request": "^2.79.0"
+    "concurrently": "^3.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+  	"install": "(cd client && yarn) && (cd server && yarn)",
+  	"start": "concurrently \"cd client && PORT=3000 yarn start\" \"cd server && PORT=3001 yarn start\""
+	}
 }
