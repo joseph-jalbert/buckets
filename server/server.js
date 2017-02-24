@@ -11,14 +11,13 @@ const router = express.Router()
 router.get('/scores', (req, res) => {
   var creds = new Buffer('u:p').toString('base64');
 	var options = {
-		uri: 'https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/scoreboard.json?fordate=20170202',
+		uri: 'https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/scoreboard.json?fordate=20170223',
 		headers: {
 		 	"Authorization": "Basic " + creds
 		}
 	}
 	function callback(err, response, body) {
 		res.json(body);
-		console.log(body);
 	}
 	
   request(options, callback);
