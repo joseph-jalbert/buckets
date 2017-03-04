@@ -1,6 +1,7 @@
 // this component fetches the JSON
 
 var React = require('react');
+var GameContainer = require('./GameContainer');
 // import Game from './Game';
 
 var ScoreboardContainer = React.createClass({
@@ -15,12 +16,11 @@ var ScoreboardContainer = React.createClass({
     this.setState({scoreboard: scores.scoreboard.gameScore});
     console.log(scores.scoreboard.gameScore);
   },
-  render: function() {return null}
-  // render: function() {
-  // 	return(this.state.scoreboard.map(game => {
-  // 		<GameContainer/>
-  // 	})
-  // }
+  render: function() {
+  	return(
+  		<GameContainer/>
+  	)
+  }
 });
 
 module.exports = ScoreboardContainer;
