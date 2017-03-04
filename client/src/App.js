@@ -41,10 +41,9 @@ function Game(games){
   console.log(games.gameInfo);
   return(
     <div>
-      <ul>
         {games.gameInfo.map(event => {
           return(
-            <table>
+            <table key={event.game.ID}>
             <thead>
               <tr>
                 <th></th>
@@ -89,7 +88,6 @@ function Game(games){
           </table>
           )
         })}
-      </ul>
     </div>
   )
 }
