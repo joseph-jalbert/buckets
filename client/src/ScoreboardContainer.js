@@ -2,7 +2,6 @@
 
 var React = require('react');
 var GameContainer = require('./GameContainer');
-// import Game from './Game';
 
 var ScoreboardContainer = React.createClass({
   getInitialState: function() {
@@ -14,11 +13,10 @@ var ScoreboardContainer = React.createClass({
     var data  = await response.json()
     var scores  = JSON.parse(data);
     this.setState({scoreboard: scores.scoreboard.gameScore});
-    console.log(scores.scoreboard.gameScore);
   },
   render: function() {
   	return(
-  		<GameContainer/>
+  		<GameContainer scoreboard={this.state.scoreboard}/>
   	)
   }
 });
