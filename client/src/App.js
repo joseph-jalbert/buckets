@@ -46,7 +46,7 @@ function Game(games){
             <table key={event.game.ID}>
             <thead>
               <tr>
-                <th></th>
+                <th>{event.game.time}</th>
                 <th>1</th>
                 <th>2</th>
                 <th>3</th>
