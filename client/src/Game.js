@@ -6,7 +6,6 @@ var QuarterScores = require('./QuarterScores');
 var GameInfo = require('./GameInfo');
 
 function Game(games){
-  console.log(games.gameInfo);
   return(
     <div>
         {games.gameInfo.map(event => {
