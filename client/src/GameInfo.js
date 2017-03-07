@@ -1,5 +1,9 @@
 var React = require('react');
 
+function fmtMSS(s){
+  return(s-(s%=60))/60+(9<s?':':':0')+s
+}
+
 function GameInfo(game) {
   var event = game.game;
   if(event.isInProgress === "true" && !event.currentIntermission) {
@@ -7,7 +11,7 @@ function GameInfo(game) {
       return(<i>{event.game.time} - {event.game.location} </i>)
     } else {
     return(
-       <span>{event.currentQuarterSecondsRemaining} seconds remaining quarter {event.currentQuarter}</span>
+       <span>{fmtMSS(event.currentQuarterSecondsRemaining)} remaining quarter {event.currentQuarter}</span>
      )
    }
  } else if(event.isUnplayed === "true") {
