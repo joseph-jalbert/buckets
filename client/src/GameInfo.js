@@ -16,8 +16,9 @@ function GameInfo(game) {
    }
  } else if(event.isUnplayed === "true") {
    return(<i>{event.game.time} - {event.game.location} </i>)
- }
-  else {
+ } else if(event.currentIntermission && (event.currentIntermission !== "4" || (event.currentIntermission === "4" && event.awayScore === event.homeScore))) {
+   return(<span>End of quarter {event.currentIntermission}</span>)
+ } else {
     return(<span>Final</span>)
   }
 }
