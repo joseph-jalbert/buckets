@@ -16,7 +16,7 @@ function Game(games){
 		            <Quarters quarter={event.quarterSummary} />
 		            <QuarterScores game={event} />
 			        </table>
-							<GameInfo game={event}/>
+							<GameInfo game={event} />
 						</div>
           )
         })}

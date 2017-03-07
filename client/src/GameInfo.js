@@ -2,12 +2,20 @@ var React = require('react');
 
 function GameInfo(game) {
   var event = game.game;
-  return(
-    <div className="gameInfo">
-     {(event.isInProgress === "true" && event.currentIntermission && event.currentIntermission !== "4") ? <span>{event.currentIntermission}</span> : <span>{event.currentQuarterSecondsRemaining} seconds remaining</span>}
-      {<i>{event.game.time} - {event.game.location} </i>}
-    </div>
-  )
+  if(event.isInProgress === "true" && !event.currentIntermission) {
+    if(!event.quarterSummary) {
+      return(<i>{event.game.time} - {event.game.location} </i>)
+    } else {
+    return(
+       <span>{event.currentQuarterSecondsRemaining} seconds remaining quarter {event.currentQuarter}</span>
+     )
+   }
+ } else if(event.isUnplayed === "true") {
+   return(<i>{event.game.time} - {event.game.location} </i>)
+ }
+  else {
+    return(<span>Final</span>)
+  }
 }
 
 
