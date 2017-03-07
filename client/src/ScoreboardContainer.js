@@ -13,16 +13,19 @@ var ScoreboardContainer = React.createClass({
     var data  = await response.json()
     var scores  = JSON.parse(data);
     this.setState({scoreboard: scores.scoreboard.gameScore});
-    console.log('fired');
   },
 
   refreshJSON: function() {
     this.fetchJSON();
-    setInterval(this.fetchJSON, 5000);
+    setInterval(this.fetchJSON, 60000);
   },
 
   componentDidMount: function() {
     this.refreshJSON();
+  },
+
+  componentWillUnmount: function() {
+    clearInterval(this.fetchJSON);
   },
 
   render: function() {
