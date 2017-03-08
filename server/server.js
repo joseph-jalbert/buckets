@@ -1,15 +1,15 @@
-import bodyParser from 'body-parser'
-import express from 'express'
-var accessFile = require('./creds')
-import path from 'path'
-const staticFiles = express.static(path.join(__dirname, '../../client/build'))
-app.use(staticFiles)
 
 const app = express()
 const request = require('request')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 const router = express.Router()
+import bodyParser from 'body-parser'
+import express from 'express'
+var accessFile = require('./creds')
+import path from 'path'
+const staticFiles = express.static(path.join(__dirname, '../../client/build'))
+app.use(staticFiles)
 
 var creds = new Buffer(accessFile.access).toString('base64');
 
