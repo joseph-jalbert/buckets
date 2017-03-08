@@ -6,12 +6,12 @@ app.use(bodyParser.urlencoded({extended: false}))
 const router = express.Router()
 import bodyParser from 'body-parser'
 import express from 'express'
-// var accessFile = require('./creds')
+var accessFile = require('./creds')
 import path from 'path'
 const staticFiles = express.static(path.join(__dirname, '../../client/build'))
 app.use(staticFiles)
 
-var creds = new Buffer(process.env.MSF_CREDS).toString('base64');
+var creds = new Buffer(accessFile.access).toString('base64');
 
 function getDate() {
   var date = new Date;
@@ -36,7 +36,7 @@ function getOptions() {
 var cachedOptions = getOptions();
 
 function dateCheck() {
-  //if all games are done, refresh the date
+  //if it's after 10AM EST, refresh the date
   var scores  = JSON.parse(scoreData.data);
   var games = scores.scoreboard.gameScore;
   var getNewDate = true;
