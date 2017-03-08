@@ -6,12 +6,18 @@ app.use(bodyParser.urlencoded({extended: false}))
 const router = express.Router()
 import bodyParser from 'body-parser'
 import express from 'express'
-var accessFile = require('./creds')
 import path from 'path'
 const staticFiles = express.static(path.join(__dirname, '../../client/build'))
 app.use(staticFiles)
 
-var creds = new Buffer(accessFile.access).toString('base64');
+if(process.env.MSF_CREDS) {
+  //production
+  var creds = new Buffer(process.env.MSF_CREDS).toString('base64');
+} else {
+  //development
+  var accessFile = require('./creds');
+  var creds = new Buffer(accessFile.access).toString('base64');
+}
 
 function getDate() {
   var date = new Date;
