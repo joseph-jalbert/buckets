@@ -20,7 +20,16 @@ if(process.env.MSF_CREDS) {
 }
 
 function getDate() {
-  var date = new Date;
+  //adjust date to EST TODO: daylight savings stuff
+  var d = new Date;
+  var offset = d.getTimezoneOffset() - 300;
+  var date = new Date(d.getTime() + (3600000*offset));
+
+  //show yesterday's scores until 11AM
+  if (date.getHours() < 11) {
+    date.setDate(date.getDate() - 1);
+  }
+
   var year = date.getFullYear();
   var yearString = year.toString();
   var monthString = ("0" + (date.getMonth() + 1)).slice(-2);
@@ -37,23 +46,6 @@ function getOptions() {
     }
   }
   return options;
-}
-
-var cachedOptions = getOptions();
-
-function dateCheck() {
-  //if it's after 10AM EST, refresh the date
-  var scores  = JSON.parse(scoreData.data);
-  var games = scores.scoreboard.gameScore;
-  var getNewDate = true;
-  for (var game in games) {
-    if(games[game].isCompleted === "false") {
-      getNewDate = false;
-    }
-  }
-  if(getNewDate) {
-    return getOptions();
-  }
 }
 
 var scoreData = {};
