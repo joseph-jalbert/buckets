@@ -23,7 +23,7 @@ function getDate() {
   //adjust date to EST TODO: daylight savings stuff
   var d = new Date;
   var offset = d.getTimezoneOffset() - 300;
-  var date = new Date(d.getTime() + (3600000*offset));
+  var date = new Date(d.getTime() + (60000*offset));
 
   //show yesterday's scores until 11AM
   if (date.getHours() < 11) {
