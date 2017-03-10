@@ -11,6 +11,11 @@
   height: 80px;
 }
 
+.logo {
+  width: 35px;
+  display: inline;
+}
+
 .App-header {
   background-color: #222;
   height: 150px;

@@ -34,7 +34,7 @@ function Logo(team) {
   if (team.name === "Wizards") logo = "WASH";
 
   return (
-    <img src={"../img/" + logo + '.png'}/>
+    <img className="logo" src={"../img/" + logo + '.png'}/>
   )
 }
 
