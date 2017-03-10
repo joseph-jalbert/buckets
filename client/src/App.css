@@ -23,6 +23,9 @@
   color: white;
 }
 
+.table {
+  width: 312px;
+}
 .App-intro {
   font-size: large;
 }

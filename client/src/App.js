@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return(
       <div className="main-container">
-        <h1>Just BUCKETS</h1>
+        <h1 className="col-xs-12">Just BUCKETS</h1>
         <ScoreboardContainer/>
       </div>
     );
