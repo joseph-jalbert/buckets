@@ -7,10 +7,10 @@ var GameInfo = require('./GameInfo');
 
 function Game(games){
   return(
-    <div>
+    <div className="container col-xs-8">
         {games.gameInfo.map(event => {
           return(
-						<div key={event.game.ID}>
+						<div className="col-xs-12 col-sm-4 col-md-6" key={event.game.ID}>
 	            <table>
 		            <Quarters quarter={event.quarterSummary} />
 		            <QuarterScores game={event} />
