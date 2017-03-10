@@ -19,43 +19,46 @@ if(process.env.MSF_CREDS) {
   var creds = new Buffer(accessFile.access).toString('base64');
 }
 
+let freshDate;
+var options = {};
+
 function getDate() {
   //adjust date to EST TODO: daylight savings stuff
   var d = new Date;
   var offset = d.getTimezoneOffset() - 300;
   var date = new Date(d.getTime() + (60000*offset));
-
   //show yesterday's scores until 11AM
   if (date.getHours() < 11) {
     date.setDate(date.getDate() - 1);
   }
-
   var year = date.getFullYear();
   var yearString = year.toString();
   var monthString = ("0" + (date.getMonth() + 1)).slice(-2);
   var dayString = ("0" + date.getDate()).slice(-2);
   var dateString = yearString + monthString + dayString;
-  return dateString;
-}
-
-function getOptions() {
-  var options = {
-    uri: 'https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/scoreboard.json?fordate=' + getDate(),
+  freshDate = dateString;
+  options = {
+    uri: 'https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/scoreboard.json?fordate=' + freshDate,
     headers: {
       "Authorization": "Basic " + creds
     }
   }
-  return options;
 }
 
+getDate();
 var scoreData = {};
 
 function callback(err, response, body) {
   scoreData.data = body;
 }
 
-request(getOptions(), callback);
-setInterval(request, 60000, getOptions(), callback);
+function fetchJSON() {
+  getDate();
+  request(options, callback);
+}
+
+fetchJSON();
+setInterval(fetchJSON, 60000);
 
 router.get('/scores', (req, res) => {
   res.json(scoreData.data);
