@@ -23,8 +23,22 @@
   color: white;
 }
 
+.header {
+  line-height: 295px;
+  color: white;
+  background-image: url('../public/img/header.jpg');
+  background-size: 312px;
+  background-repeat: no-repeat;
+  height: 191px;
+  background-position-x: 15px;
+}
+
 .table {
   width: 312px;
+}
+
+.game-info {
+  padding-left: 8px;
 }
 .App-intro {
   font-size: large;
