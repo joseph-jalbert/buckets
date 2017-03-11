@@ -10,7 +10,7 @@ function Game(games){
     <div>
         {games.gameInfo.map(event => {
           return(
-						<div className="col-xs-8 col-sm-6 col-lg-4" key={event.game.ID}>
+						<div className="tableWrap col-xs-12 col-sm-6 col-lg-4" key={event.game.ID}>
 	            <table className="table">
 		            <Quarters quarter={event.quarterSummary} />
 		            <QuarterScores game={event} />

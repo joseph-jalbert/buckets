@@ -26,7 +26,7 @@ function Logo(team) {
   if (team.name === "Magic") logo = "ORL";
   if (team.name === "76ers") logo = "PHI";
   if (team.name === "Suns") logo = "PHX";
-  if (team.name === "Trailblazers") logo = "POR";
+  if (team.name === "Trail Blazers") logo = "POR";
   if (team.name === "Kings") logo = "SAC";
   if (team.name === "Spurs") logo = "SAN";
   if (team.name === "Raptors") logo = "TOR";
