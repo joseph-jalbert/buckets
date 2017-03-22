@@ -32,7 +32,19 @@
 .table {
   width: 312px;
   margin-bottom: 10px;
-  text-align: none;
+  table-layout: fixed;
+  th {
+    width: 10px;
+  }
+}
+.first {
+  width: 145px;
+}
+.image, .team-meta {
+  display: inline;
+}
+.image {
+  padding-right: 4px;
 }
 
 .tableWrap {

@@ -7,29 +7,31 @@ function QuarterScores(game) {
     <tbody>
       <tr className="away">
         <td>
-          <Logo name={event.game.awayTeam.Name}/>{event.game.awayTeam.Name}
+          <div className="image"><Logo name={event.game.awayTeam.Name}/></div>
+          <div className="team-meta">{event.game.awayTeam.Name}</div>
         </td>
-        <th>{(event.quarterSummary && event.quarterSummary.quarter[0] && event.quarterSummary.quarter[0].awayScore) && event.quarterSummary.quarter[0].awayScore}</th>
-        <th>{(event.quarterSummary && event.quarterSummary.quarter[1] && event.quarterSummary.quarter[1].awayScore) && event.quarterSummary.quarter[1].awayScore}</th>
-        <th>{(event.quarterSummary && event.quarterSummary.quarter[2] && event.quarterSummary.quarter[2].awayScore) && event.quarterSummary.quarter[2].awayScore}</th>
-        <th>{(event.quarterSummary && event.quarterSummary.quarter[3] && event.quarterSummary.quarter[3].awayScore) && event.quarterSummary.quarter[3].awayScore}</th>
-        {(event.quarterSummary && event.quarterSummary.quarter[4]) && <th>{event.quarterSummary.quarter[4].awayScore}</th>}
-        {(event.quarterSummary && event.quarterSummary.quarter[5]) && <th>{event.quarterSummary.quarter[5].awayScore}</th>}
-        {(event.quarterSummary && event.quarterSummary.quarter[6]) && <th>{event.quarterSummary.quarter[6].awayScore}</th>}
-        <th>{event.awayScore && event.awayScore}</th>
+        <td>{(event.quarterSummary && event.quarterSummary.quarter[0] && event.quarterSummary.quarter[0].awayScore) && event.quarterSummary.quarter[0].awayScore}</td>
+        <td>{(event.quarterSummary && event.quarterSummary.quarter[1] && event.quarterSummary.quarter[1].awayScore) && event.quarterSummary.quarter[1].awayScore}</td>
+        <td>{(event.quarterSummary && event.quarterSummary.quarter[2] && event.quarterSummary.quarter[2].awayScore) && event.quarterSummary.quarter[2].awayScore}</td>
+        <td>{(event.quarterSummary && event.quarterSummary.quarter[3] && event.quarterSummary.quarter[3].awayScore) && event.quarterSummary.quarter[3].awayScore}</td>
+        {(event.quarterSummary && event.quarterSummary.quarter[4]) && <td>{event.quarterSummary.quarter[4].awayScore}</td>}
+        {(event.quarterSummary && event.quarterSummary.quarter[5]) && <td>{event.quarterSummary.quarter[5].awayScore}</td>}
+        {(event.quarterSummary && event.quarterSummary.quarter[6]) && <td>{event.quarterSummary.quarter[6].awayScore}</td>}
+        <td>{event.awayScore && event.awayScore}</td>
       </tr>
       <tr className="home">
         <td>
-          <Logo name={event.game.homeTeam.Name}/>{event.game.homeTeam.Name}
+          <div className="image"><Logo name={event.game.homeTeam.Name}/></div>
+          <div className="team-meta">{event.game.homeTeam.Name}</div>
         </td>
-        <th>{(event.quarterSummary && event.quarterSummary.quarter[0] && event.quarterSummary.quarter[0].homeScore) && event.quarterSummary.quarter[0].homeScore}</th>
-        <th>{(event.quarterSummary && event.quarterSummary.quarter[1] && event.quarterSummary.quarter[1].homeScore) && event.quarterSummary.quarter[1].homeScore}</th>
-        <th>{(event.quarterSummary && event.quarterSummary.quarter[2] && event.quarterSummary.quarter[2].homeScore) && event.quarterSummary.quarter[2].homeScore}</th>
-        <th>{(event.quarterSummary && event.quarterSummary.quarter[3] && event.quarterSummary.quarter[3].homeScore) && event.quarterSummary.quarter[3].homeScore}</th>
-        {(event.quarterSummary && event.quarterSummary.quarter[4]) && <th>{event.quarterSummary.quarter[4].homeScore}</th>}
-        {(event.quarterSummary && event.quarterSummary.quarter[5]) && <th>{event.quarterSummary.quarter[5].homeScore}</th>}
-        {(event.quarterSummary && event.quarterSummary.quarter[6]) && <th>{event.quarterSummary.quarter[6].homeScore}</th>}
-        <th>{event.homeScore && event.homeScore}</th>
+        <td>{(event.quarterSummary && event.quarterSummary.quarter[0] && event.quarterSummary.quarter[0].homeScore) && event.quarterSummary.quarter[0].homeScore}</td>
+        <td>{(event.quarterSummary && event.quarterSummary.quarter[1] && event.quarterSummary.quarter[1].homeScore) && event.quarterSummary.quarter[1].homeScore}</td>
+        <td>{(event.quarterSummary && event.quarterSummary.quarter[2] && event.quarterSummary.quarter[2].homeScore) && event.quarterSummary.quarter[2].homeScore}</td>
+        <td>{(event.quarterSummary && event.quarterSummary.quarter[3] && event.quarterSummary.quarter[3].homeScore) && event.quarterSummary.quarter[3].homeScore}</td>
+        {(event.quarterSummary && event.quarterSummary.quarter[4]) && <td>{event.quarterSummary.quarter[4].homeScore}</td>}
+        {(event.quarterSummary && event.quarterSummary.quarter[5]) && <td>{event.quarterSummary.quarter[5].homeScore}</td>}
+        {(event.quarterSummary && event.quarterSummary.quarter[6]) && <td>{event.quarterSummary.quarter[6].homeScore}</td>}
+        <td>{event.homeScore && event.homeScore}</td>
       </tr>
     </tbody>
   )

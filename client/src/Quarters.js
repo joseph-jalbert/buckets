@@ -4,7 +4,7 @@ function Quarters(game) {
   return(
     <thead>
       <tr>
-        <th></th>
+        <th className="first"></th>
         <th>1</th>
         <th>2</th>
         <th>3</th>
