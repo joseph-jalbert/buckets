@@ -9,7 +9,7 @@ function QuarterScores(game) {
       <tr className="away">
         <td>
           <div className="image"><Logo name={event.game.awayTeam.Name}/></div>
-          <div className="team-meta"><a href=TeamUrl>{event.game.awayTeam.Name}</div>
+          <div className="team-meta"><TeamUrl name={event.game.awayTeam.Name}/></div>
         </td>
         <td>{(event.quarterSummary && event.quarterSummary.quarter[0] && event.quarterSummary.quarter[0].awayScore) && event.quarterSummary.quarter[0].awayScore}</td>
         <td>{(event.quarterSummary && event.quarterSummary.quarter[1] && event.quarterSummary.quarter[1].awayScore) && event.quarterSummary.quarter[1].awayScore}</td>
@@ -23,7 +23,7 @@ function QuarterScores(game) {
       <tr className="home">
         <td>
           <div className="image"><Logo name={event.game.homeTeam.Name}/></div>
-          <div className="team-meta">{event.game.homeTeam.Name}</div>
+          <div className="team-meta"><TeamUrl name={event.game.homeTeam.Name}/></div>
         </td>
         <td>{(event.quarterSummary && event.quarterSummary.quarter[0] && event.quarterSummary.quarter[0].homeScore) && event.quarterSummary.quarter[0].homeScore}</td>
         <td>{(event.quarterSummary && event.quarterSummary.quarter[1] && event.quarterSummary.quarter[1].homeScore) && event.quarterSummary.quarter[1].homeScore}</td>
