@@ -35,7 +35,9 @@ function Team(team) {
   if (team.name === "Wizards") teamurl = baseurl + "wizards";
 
   return (
-    <a href={teamurl} target="_blank">{team.name}</a>
+    <div className="team-meta">
+      <a href={teamurl} target="_blank">{team.name}</a>
+    </div>
   )
 }
 
