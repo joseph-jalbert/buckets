@@ -38,7 +38,7 @@ function getDate() {
   var dateString = yearString + monthString + dayString;
   freshDate = dateString;
   options = {
-    uri: 'https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/scoreboard.json?fordate=' + freshDate,
+    uri: 'https://www.mysportsfeeds.com/api/feed/pull/nba/2017-playoff/scoreboard.json?fordate=' + freshDate,
     headers: {
       "Authorization": "Basic " + creds
     }
