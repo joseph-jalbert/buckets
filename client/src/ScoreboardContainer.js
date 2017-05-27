@@ -1,4 +1,4 @@
-// this component fetches the JSON
+// // this component fetches/parses the JSON and does business logic
 
 var React = require('react');
 var GameContainer = require('./GameContainer');
