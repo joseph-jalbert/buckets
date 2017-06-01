@@ -19,6 +19,7 @@ class ChooseDate extends React.Component {
     this.setState({
       startDate: date
     });
+    var newDate = date.format('YYYYMMDD');
   }
 
   render() {
