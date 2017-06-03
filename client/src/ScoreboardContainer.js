@@ -2,10 +2,26 @@
 
 var React = require('react');
 var GameContainer = require('./GameContainer');
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
+
+import ChooseDate from './DatePicker';
 
 var ScoreboardContainer = React.createClass({
   getInitialState: function() {
-    return {scoreboard: []}
+    return {
+      startDate: moment(),
+      scoreboard: []
+    }
+  },
+
+  handleChange: function(date) {
+    this.setState({
+      startDate: date
+    });
+    var newDate = date.format('YYYYMMDD');
+    this.refreshJSON();
   },
 
   fetchJSON: async function() {
@@ -29,9 +45,16 @@ var ScoreboardContainer = React.createClass({
   },
 
   render: function() {
-    if(!this.state.scoreboard) return(<h3 className="noGames">*** sorry hoops junkies, there are no NBA games today ***</h3>);
+    //  if(!this.state.scoreboard) return(<h3 className="noGames">*** sorry hoops junkies, there are no NBA games today ***</h3>);
   	return(
-  		<GameContainer scoreboard={this.state.scoreboard}/>
+      <div>
+        <DatePicker
+            inline
+            selected={this.state.startDate}
+            onChange={this.handleChange}
+        />
+  		{/* <GameContainer scoreboard={this.state.scoreboard}/> */}
+    </div>
   	)
   }
 });
