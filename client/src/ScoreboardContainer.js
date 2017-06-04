@@ -20,18 +20,17 @@ var ScoreboardContainer = React.createClass({
     this.setState({
       startDate: date
     });
-    var newDate = date.format('YYYYMMDD');
     this.refreshJSON();
   },
 
-  fetchJSON: async function() {
-    var response = await fetch('/scores');
+  fetchJSON: async function(date) {
+    var response = await fetch('/scores/' + this.state.startDate.format('YYYYMMDD'));
     var data  = await response.json();
     var scores  = JSON.parse(data);
     this.setState({scoreboard: scores.scoreboard.gameScore});
   },
 
-  refreshJSON: function() {
+  refreshJSON: function(date) {
     this.fetchJSON();
     setInterval(this.fetchJSON, 60000);
   },
@@ -45,7 +44,7 @@ var ScoreboardContainer = React.createClass({
   },
 
   render: function() {
-    //  if(!this.state.scoreboard) return(<h3 className="noGames">*** sorry hoops junkies, there are no NBA games today ***</h3>);
+    //if(!this.state.scoreboard) return(<h3 className="noGames">*** sorry hoops junkies, there are no NBA games today ***</h3>);
   	return(
       <div>
         <DatePicker
@@ -53,7 +52,7 @@ var ScoreboardContainer = React.createClass({
             selected={this.state.startDate}
             onChange={this.handleChange}
         />
-  		{/* <GameContainer scoreboard={this.state.scoreboard}/> */}
+  		<GameContainer scoreboard={this.state.scoreboard}/>
     </div>
   	)
   }
