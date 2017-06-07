@@ -59,22 +59,22 @@ function fetchJSON() {
 
 fetchJSON();
 setInterval(fetchJSON, 60000);
+//TODO: only set fetch interval if it's gameday
 
 router.get('/scores/:date', (req, res) => {
   if(freshDate == req.params.date) {
-    console.log('default' + req.params.date);
     res.json(scoreData.data);
   } else {
-    console.log('custom' + req.params.date);
+    function customCB(err, response, body){
+      res.json(body);
+    }
     request({
       uri: 'https://www.mysportsfeeds.com/api/feed/pull/nba/2017-playoff/scoreboard.json?fordate=' + req.params.date,
       headers: {
         "Authorization": "Basic " + creds
         }
-      }, callback);
-      res.json(scoreData.data);
+      }, customCB);
   }
-
 })
 
 app.use(router)

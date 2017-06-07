@@ -31,7 +31,6 @@ var ScoreboardContainer = React.createClass({
     var data  = await response.json();
     //console.log(data);
     var scores  = JSON.parse(data);
-    console.log('fetchJSON');
     this.setState({scoreboard: scores.scoreboard.gameScore});
   },
 
