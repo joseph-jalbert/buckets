@@ -68,8 +68,14 @@ router.get('/scores/:date', (req, res) => {
     function customCB(err, response, body){
       res.json(body);
     }
+    var uriStr = '';
+    if(req.params.date > 20170413) {
+      uriStr = uriStr.concat('https://www.mysportsfeeds.com/api/feed/pull/nba/2017-playoff/scoreboard.json?fordate=');
+    } else {
+      uriStr = uriStr.concat('https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/scoreboard.json?fordate=');
+    }
     request({
-      uri: 'https://www.mysportsfeeds.com/api/feed/pull/nba/2017-playoff/scoreboard.json?fordate=' + req.params.date,
+      uri: uriStr + req.params.date,
       headers: {
         "Authorization": "Basic " + creds
         }
