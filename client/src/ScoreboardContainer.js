@@ -22,6 +22,12 @@ var ScoreboardContainer = React.createClass({
       }, function() {
       this.refreshJSON(date);
     });
+    this.toggleCalendar();
+  },
+
+  toggleCalendar: function(e) {
+    e && e.preventDefault()
+    this.setState({isOpen: !this.state.isOpen})
   },
 
   fetchJSON: async function(date) {
@@ -52,13 +58,37 @@ var ScoreboardContainer = React.createClass({
   render: function() {
     if(!this.state.scoreboard) return(
       <div>
-        <DatePicker inline selected={this.state.startDate} onChange={this.handleChange}/>
+        <button className="date" onClick={this.toggleCalendar}>
+          {this.state.startDate.format('MM-DD-YYYY')}
+        </button>
+        {
+          this.state.isOpen && (
+            <DatePicker
+              selected={this.state.startDate}
+              onChange={this.handleChange}
+              withPortal
+              inline
+            />
+          )
+        }
         <h3 className="noGames">*** sorry hoops junkies, there are no NBA games today ***</h3>
       </div>
     );
   	return(
       <div>
-        <DatePicker inline selected={this.state.startDate} onChange={this.handleChange}/>
+        <button className="date" onClick={this.toggleCalendar}>
+          {this.state.startDate.format('MM-DD-YYYY')}
+        </button>
+        {
+          this.state.isOpen && (
+            <DatePicker
+              selected={this.state.startDate}
+              onChange={this.handleChange}
+              withPortal
+              inline
+            />
+          )
+        }
   		  <GameContainer scoreboard={this.state.scoreboard}/>
       </div>
   	)
