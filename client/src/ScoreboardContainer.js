@@ -22,14 +22,11 @@ var ScoreboardContainer = React.createClass({
       }, function() {
       this.refreshJSON(date);
     });
-    console.log(date);
   },
 
   fetchJSON: async function(date) {
     var response = await fetch('/scores/' + this.state.startDate.format('YYYYMMDD'));
-    //console.log(response);
     var data  = await response.json();
-    //console.log(data);
     var scores  = JSON.parse(data);
     this.setState({scoreboard: scores.scoreboard.gameScore});
   },
