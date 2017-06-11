@@ -1,37 +1,29 @@
 // // this component fetches/parses the JSON and does business logic
 
 var React = require('react');
+var Calendar = require('./Calendar');
 var GameContainer = require('./GameContainer');
-import DatePicker from 'react-datepicker';
-import moment from 'moment';
-import 'react-datepicker/dist/react-datepicker.css';
 
-import ChooseDate from './DatePicker';
+import moment from 'moment';
+
 
 var ScoreboardContainer = React.createClass({
   getInitialState: function() {
     return {
-      startDate: moment(),
+      date: moment(),
       scoreboard: []
     }
   },
 
-  handleChange: function(date) {
+  handleChange: function(chosenDate) {
     this.setState({
-      startDate: date
+      date: chosenDate
       }, function() {
-      this.refreshJSON(date);
+      this.refreshJSON(chosenDate);
     });
-    this.toggleCalendar();
   },
-
-  toggleCalendar: function(e) {
-    e && e.preventDefault()
-    this.setState({isOpen: !this.state.isOpen})
-  },
-
   fetchJSON: async function(date) {
-    var response = await fetch('/scores/' + this.state.startDate.format('YYYYMMDD'));
+    var response = await fetch('/scores/' + this.state.date.format('YYYYMMDD'));
     var data  = await response.json();
     var scores  = JSON.parse(data);
     this.setState({scoreboard: scores.scoreboard.gameScore});
@@ -56,42 +48,21 @@ var ScoreboardContainer = React.createClass({
   },
 
   render: function() {
-    if(!this.state.scoreboard) return(
-      <div>
-        <button className="date" onClick={this.toggleCalendar}>
-          {this.state.startDate.format('MM-DD-YYYY')}
-        </button>
-        {
-          this.state.isOpen && (
-            <DatePicker
-              selected={this.state.startDate}
-              onChange={this.handleChange}
-              withPortal
-              inline
-            />
-          )
-        }
-        <h3 className="noGames">*** sorry hoops junkies, there are no NBA games today ***</h3>
-      </div>
-    );
-  	return(
-      <div>
-        <button className="date" onClick={this.toggleCalendar}>
-          {this.state.startDate.format('MM-DD-YYYY')}
-        </button>
-        {
-          this.state.isOpen && (
-            <DatePicker
-              selected={this.state.startDate}
-              onChange={this.handleChange}
-              withPortal
-              inline
-            />
-          )
-        }
-  		  <GameContainer scoreboard={this.state.scoreboard}/>
-      </div>
-  	)
+    if(!this.state.scoreboard){
+      return(
+        <div>
+          <Calendar date={this.state.date} onSelectDate={this.handleChange}/>
+          <h3 className="noGames">*** sorry hoops junkies, there are no NBA games today ***</h3>
+        </div>
+      )
+    } else{
+    	return(
+        <div>
+          <Calendar date={this.state.date} onSelectDate={this.handleChange}/>
+    		  <GameContainer scoreboard={this.state.scoreboard}/>
+        </div>
+    	)
+    }
   }
 });
 
