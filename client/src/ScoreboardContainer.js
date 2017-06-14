@@ -6,7 +6,6 @@ var GameContainer = require('./GameContainer');
 
 import moment from 'moment';
 
-
 var ScoreboardContainer = React.createClass({
   getInitialState: function() {
     return {
@@ -22,10 +21,11 @@ var ScoreboardContainer = React.createClass({
       this.refreshJSON(chosenDate);
     });
   },
+
   fetchJSON: async function(date) {
     var response = await fetch('/scores/' + this.state.date.format('YYYYMMDD'));
-    var data  = await response.json();
-    var scores  = JSON.parse(data);
+    var data     = await response.json();
+    var scores   = JSON.parse(data);
     this.setState({scoreboard: scores.scoreboard.gameScore});
   },
 
@@ -52,7 +52,7 @@ var ScoreboardContainer = React.createClass({
       return(
         <div>
           <Calendar date={this.state.date} onSelectDate={this.handleChange}/>
-          <h3 className="noGames">*** sorry hoops junkies, there are no NBA games today ***</h3>
+          <h3 className="noGames">Sorry hoops junkies, but there are no NBA games today! Click the button to select another day in the 2017 season</h3>
         </div>
       )
     } else{
