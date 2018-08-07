@@ -52,7 +52,7 @@ var ScoreboardContainer = React.createClass({
       return(
         <div>
           <Calendar date={this.state.date} onSelectDate={this.handleChange}/>
-          <h3 className="noGames">Sorry hoops junkies, but there are no NBA games today! Click the button to select another day in the 2017 season</h3>
+          <h3 className="noGames">Sorry hoops junkies, but there are no NBA games today! Click the button to see scores for any date from the 2017-18 season</h3>
         </div>
       )
     } else{

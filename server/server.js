@@ -12,33 +12,35 @@ app.use(staticFiles)
 
 if(process.env.MSF_CREDS) {
   //production
-  var creds = new Buffer(process.env.MSF_CREDS).toString('base64');
+  var creds = new Buffer(process.env.MSF_CREDS).toString();
 } else {
   //development
   var accessFile = require('./creds');
-  var creds = new Buffer(accessFile.access).toString('base64');
+  var creds = new Buffer(accessFile.access).toString();
 }
 
 let freshDate;
-var options = {};
+var options = {},
+    uri2018regular = 'https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/scoreboard.json?fordate=',
+    uri2018playoff = 'https://api.mysportsfeeds.com/v1.2/pull/nba/2018-playoff/scoreboard.json?fordate=';
 
 function getDate() {
   //adjust date to EST TODO: daylight savings stuff
-  var d = new Date;
-  var offset = d.getTimezoneOffset() - 300;
-  var date = new Date(d.getTime() + (60000*offset));
+  var d = new Date,
+      offset = d.getTimezoneOffset() - 300,
+      date = new Date(d.getTime() + (60000*offset));
   //show yesterday's scores until 11AM
   if (date.getHours() < 11) {
     date.setDate(date.getDate() - 1);
   }
-  var year = date.getFullYear();
-  var yearString = year.toString();
-  var monthString = ("0" + (date.getMonth() + 1)).slice(-2);
-  var dayString = ("0" + date.getDate()).slice(-2);
-  var dateString = yearString + monthString + dayString;
+  var yearString = date.getFullYear().toString(),
+      monthString = ("0" + (date.getMonth() + 1)).slice(-2),
+      dayString = ("0" + date.getDate()).slice(-2),
+      dateString = yearString + monthString + dayString;
+
   freshDate = dateString;
   options = {
-    uri: 'https://www.mysportsfeeds.com/api/feed/pull/nba/2017-playoff/scoreboard.json?fordate=' + freshDate,
+    uri: uri2018playoff + freshDate,
     headers: {
       "Authorization": "Basic " + creds
     }
@@ -58,7 +60,9 @@ function fetchJSON() {
 }
 
 fetchJSON();
-setInterval(fetchJSON, 60000);
+
+// season is over, will setInterval again once new season starts
+// setInterval(fetchJSON, 60000);
 //TODO: only set fetch interval if it's gameday
 
 router.get('/scores/:date', (req, res) => {
@@ -68,11 +72,11 @@ router.get('/scores/:date', (req, res) => {
     function customCB(err, response, body){
       res.json(body);
     }
-    var uriStr = '';
-    if(req.params.date > 20170413) {
-      uriStr = uriStr.concat('https://www.mysportsfeeds.com/api/feed/pull/nba/2017-playoff/scoreboard.json?fordate=');
+    let uriStr;
+    if ( req.params.date < 20180414 ) {
+        uriStr = uri2018regular;
     } else {
-      uriStr = uriStr.concat('https://www.mysportsfeeds.com/api/feed/pull/nba/2016-2017-regular/scoreboard.json?fordate=');
+        uriStr = uri2018playoff;
     }
     request({
       uri: uriStr + req.params.date,

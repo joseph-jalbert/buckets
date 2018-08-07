@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001",
+  "secure": false,
   "dependencies": {
     "moment": "^2.18.1",
     "react": "^15.4.2",

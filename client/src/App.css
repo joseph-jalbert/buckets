@@ -1,3 +1,7 @@
+h1 {
+    padding-left: 25px;
+}
+
 button.date {
   margin-left: 15px;
   cursor: pointer;
